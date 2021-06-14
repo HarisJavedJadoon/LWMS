@@ -7,11 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LWMS.Secure.Admin.WebPages
+namespace LWMS.Secure.Vendor.WebPages
 {
 
 
-    public partial class Default
+    public partial class VendorExperiencesList
     {
 
         /// <summary>
@@ -22,6 +22,15 @@ namespace LWMS.Secure.Admin.WebPages
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl divMessages;
+
+        /// <summary>
+        /// btnNew control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnNew;
 
         /// <summary>
         /// lsvMain control.

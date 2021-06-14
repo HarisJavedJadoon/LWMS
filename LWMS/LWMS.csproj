@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" />
   <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -24,6 +25,8 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
+    <DockerLaunchUrl>http://{ServiceIPAddress}</DockerLaunchUrl>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -138,6 +141,7 @@
     <Content Include="Assets\Admin\images\logo-dark.png" />
     <Content Include="Assets\Admin\images\logo-light.png" />
     <Content Include="Assets\Admin\images\logo-sm.png" />
+    <Content Include="Assets\Admin\images\logo\logo.png" />
     <Content Include="Assets\Admin\images\maintenance.png" />
     <Content Include="Assets\Admin\images\product\img-1.png" />
     <Content Include="Assets\Admin\images\product\img-2.png" />
@@ -352,6 +356,9 @@
     <Content Include="Assets\Vendor\images\logo-light-icon.png" />
     <Content Include="Assets\Vendor\images\logo-light-text.png" />
     <Content Include="Assets\Vendor\images\logo-text.png" />
+    <Content Include="Assets\Vendor\images\logo\logo-Icon.png" />
+    <Content Include="Assets\Vendor\images\logo\logo.png" />
+    <Content Include="Assets\Vendor\images\logo\maxresdefault-10.jpg" />
     <Content Include="Assets\Vendor\images\sigmund-aI4RJ--Mw4I-unsplash.jpg" />
     <Content Include="Assets\Vendor\images\tooltip\Euclid.png" />
     <Content Include="Assets\Vendor\images\users\1.jpg" />
@@ -363,6 +370,7 @@
     <Content Include="Assets\Vendor\images\users\7.jpg" />
     <Content Include="Assets\Vendor\images\users\8.jpg" />
     <Content Include="Assets\Vendor\images\users\profile.png" />
+    <Content Include="Assets\Vendor\images\users\test.jpg" />
     <Content Include="Assets\Vendor\js\chat.js" />
     <Content Include="Assets\Vendor\js\custom.min.js" />
     <Content Include="Assets\Vendor\js\dashboard1.js" />
@@ -943,7 +951,11 @@
     <Content Include="Scripts\WebForms\WebUIValidation.js" />
     <Content Include="Secure\Admin\Login.aspx" />
     <Content Include="Secure\Admin\WebPages\Default.aspx" />
+    <Content Include="Secure\Admin\WebPages\VendorExperiences.aspx" />
     <Content Include="Secure\Vendor\WebPages\Default.aspx" />
+    <Content Include="Secure\Vendor\WebPages\VendorExperiences.aspx" />
+    <Content Include="Secure\Vendor\WebPages\VendorExperiencesList.aspx" />
+    <Content Include="Secure\Vendor\WebPages\VendorProfile.aspx" />
     <Content Include="SignUp.aspx" />
     <Content Include="Web.config" />
     <Content Include="Bundle.config" />
@@ -955,6 +967,8 @@
     <Compile Include="DBContext\MessageOption.cs" />
     <Compile Include="DBContext\SQLHelper.cs" />
     <Compile Include="DBContext\UserDAL.cs" />
+    <Compile Include="DBContext\VendorDAL.cs" />
+    <Compile Include="DBContext\VendorExperienceDAL.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -978,6 +992,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Vendor.cs" />
+    <Compile Include="Models\VendorExperience.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Secure\Admin\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
@@ -1000,6 +1016,13 @@
     <Compile Include="Secure\Admin\WebPages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Secure\Admin\WebPages\VendorExperiences.aspx.cs">
+      <DependentUpon>VendorExperiences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Admin\WebPages\VendorExperiences.aspx.designer.cs">
+      <DependentUpon>VendorExperiences.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Secure\Vendor\Office\Main.Master.cs">
       <DependentUpon>Main.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -1013,6 +1036,27 @@
     </Compile>
     <Compile Include="Secure\Vendor\WebPages\Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Vendor\WebPages\VendorExperiences.aspx.cs">
+      <DependentUpon>VendorExperiences.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Vendor\WebPages\VendorExperiences.aspx.designer.cs">
+      <DependentUpon>VendorExperiences.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Vendor\WebPages\VendorExperiencesList.aspx.cs">
+      <DependentUpon>VendorExperiencesList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Vendor\WebPages\VendorExperiencesList.aspx.designer.cs">
+      <DependentUpon>VendorExperiencesList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Secure\Vendor\WebPages\VendorProfile.aspx.cs">
+      <DependentUpon>VendorProfile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Secure\Vendor\WebPages\VendorProfile.aspx.designer.cs">
+      <DependentUpon>VendorProfile.aspx</DependentUpon>
     </Compile>
     <Compile Include="SignUp.aspx.cs">
       <DependentUpon>SignUp.aspx</DependentUpon>
@@ -1028,6 +1072,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Assets\Default\css\" />
     <Folder Include="Assets\Default\images\" />
+    <Folder Include="Secure\VendorPages\" />
+    <Folder Include="WebsiteResources\Images\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\Vendor\plugins\footable\css\fonts\footable.eot" />
@@ -1134,7 +1180,10 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets'))" />
   </Target>
+  <Import Project="..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets" Condition="Exists('..\packages\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.1.10.14\build\Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

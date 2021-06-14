@@ -12,7 +12,7 @@
     <meta name="author" content="" />
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="Assets/Vendor/images/favicon.png" />
-    <title>LWMS</title>
+    <title>eProcurement</title>
     <!-- Bootstrap Core CSS -->
     <link href="Assets/Vendor/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Morries chart CSS -->
@@ -38,25 +38,36 @@
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
 
-        <section id="wrapper" class="login-register login-sidebar" style="background-image: url(Assets/Vendor/images/background/login-register.jpg);">
+        <section id="wrapper" class="login-register login-sidebar" style="background-image: url(Assets/Vendor/images/logo/maxresdefault-10.jpg);">
             <div class="login-box card">
                 <div id="divMessages" runat="server"></div>
                 <div class="card-body">
                     <div class="form-horizontal form-material">
                         <a href="javascript:void(0)" class="text-center db">
-                            <img src="Assets/Vendor/images/logo-icon.png" alt="Home" /><br />
-                            <img src="Assets/Vendor/images/logo-text.png" alt="Home" /></a>
+                            <img src="../../Assets/Admin/images/logo/logo.png" alt="" height="22" class="logo logo-dark" /></a>
                         <h3 class="box-title m-t-40 m-b-0">Register Now</h3>
-                        <small>Create your account and enjoy</small>
-
-                        <div class="form-group m-t-20">
+                        <div class="form-group  m-t-20">
                             <div class="col-xs-12">
                                 <asp:TextBox ID="txtName" CssClass="form-control" placeholder="Name" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvName" runat="server" ControlToValidate="txtName"
+                                    ValidationGroup="SignUp" Display="Dynamic" InitialValue="" ErrorMessage="Required"
+                                    ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-group ">
                             <div class="col-xs-12">
                                 <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvEmail" runat="server" ControlToValidate="txtEmail"
+                                    ValidationGroup="SignUp" Display="Dynamic" InitialValue="" ErrorMessage="Required"
+                                    ForeColor="Red"></asp:RequiredFieldValidator>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <asp:TextBox ID="txtMobileNo" CssClass="form-control" placeholder="Mobile NO" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator ID="rfvMobileNo" runat="server" ControlToValidate="txtMobileNo"
+                                    ValidationGroup="SignUp" Display="Dynamic" InitialValue="" ErrorMessage="Required"
+                                    ForeColor="Red"></asp:RequiredFieldValidator>
                             </div>
                         </div>
                         <div class="form-group ">
@@ -68,21 +79,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="col-xs-12">
-                                <asp:TextBox ID="txtConfirmPassword" TextMode="Password" CssClass="form-control" placeholder="Confirm Password" runat="server"></asp:TextBox>
-                                <asp:RequiredFieldValidator ID="rfvConfirmPassword" runat="server" ControlToValidate="txtConfirmPassword"
-                                    ValidationGroup="SignUp" Display="Dynamic" InitialValue="" ErrorMessage="Required"
-                                    ForeColor="Red"></asp:RequiredFieldValidator>
-                                <asp:CompareValidator ID="cvConfirmPassword" Display="Dynamic" runat="server" ControlToCompare="txtPassword"
-                                    ControlToValidate="txtConfirmPassword" SetFocusOnError="true" ErrorMessage="Mismatch Password"
-                                    ValidationGroup="SignUp"></asp:CompareValidator>
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <div class="col-md-12">
-                                <div class="checkbox checkbox-primary p-t-0">
+                                <div class=" p-t-0">
                                     <asp:CheckBox ID="chkSignUp" runat="server" />
                                     <label for="checkbox-signup">I agree to all <a href="#">Terms</a></label>
+
                                 </div>
                             </div>
                         </div>
@@ -91,9 +92,9 @@
                                 <asp:Button ID="btnSignUp" ValidationGroup="SignUp" CssClass="btn btn-info btn-lg btn-block text-uppercase waves-light" runat="server" Text="Sign Up" OnClick="btnSignUp_Click" />
                             </div>
                         </div>
-                        <div class="form-group m-b-0">
-                            <div class="col-sm-12 text-center">
-                                <p>Already have an account? <a href="Login.aspx" class="text-info m-l-5"><b>Sign In</b></a></p>
+                        <div class="form-group">
+                            <div class="col-sm-12">
+                                <p style="display: inline; text-align: left !important;">Already have an account? <a href="Login.aspx" style="display: inline; text-align: left !important;" class="text-info"><b style="display: inline; text-align: left !important;">Sign In</b></a></p>
                             </div>
                         </div>
                     </div>

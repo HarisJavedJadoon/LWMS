@@ -37,48 +37,44 @@
         <!-- ============================================================== -->
         <!-- Main wrapper - style you can find in pages.scss -->
         <!-- ============================================================== -->
-        <section id="wrapper" class="login-register login-sidebar" style="background-image: url(Assets/Vendor/images/background/login-register.jpg);">
+        <section id="wrapper" class="login-register login-sidebar" style="background-image: url(Assets/Vendor/images/logo/maxresdefault-10.jpg);">
             <div class="login-box card">
+                
                 <div id="divMessages" runat="server"></div>
                 <div class="card-body">
                     <div class="form-horizontal form-material">
                         <a href="javascript:void(0)" class="text-center db">
-                            <img src="Assets/Vendor/images/logo-icon.png" alt="Home" /><br />
-                            <img src="Assets/Vendor/images/logo-text.png" alt="Home" /></a>
-                        <div class="form-group m-t-40">
-                            <div class="col-xs-12">
-                                <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-xs-12">
-                                <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Password" runat="server"></asp:TextBox>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-md-12">
-                                <div class="checkbox checkbox-primary pull-left p-t-0">
-                                    <asp:CheckBox ID="chkSignUp" runat="server" />
-                                    <label for="checkbox-signup">Remember me </label>
+                            <img src="Assets/Vendor/images/logo/logo.png" height="22" alt="Home" />
+                            <div class="form-group m-t-40">
+                                <div class="col-xs-12">
+                                    <asp:TextBox ID="txtEmail" CssClass="form-control" placeholder="Email" runat="server"></asp:TextBox>
                                 </div>
-                                <a href="javascript:void(0)" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i>Forgot pwd?</a>
                             </div>
-                        </div>
-                        <div class="form-group text-center m-t-20">
-                            <div class="col-xs-12">
-                                <asp:Button ID="btnLogin" CssClass="btn btn-info btn-lg btn-block text-uppercase waves-light" runat="server" Text="Log In" OnClick="btnLogin_Click"/>
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <asp:TextBox ID="txtPassword" TextMode="Password" CssClass="form-control" placeholder="Password" runat="server"></asp:TextBox>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-xs-12 col-sm-12 col-md-12 m-t-10 text-center">
-                                <div class="social"><a href="javascript:void(0)" class="btn  btn-facebook" data-toggle="tooltip" title="Login with Facebook"><i aria-hidden="true" class="fa fa-facebook"></i></a>&nbsp;<a href="javascript:void(0)" class="btn btn-googleplus" data-toggle="tooltip" title="Login with Google"><i aria-hidden="true" class="fa fa-google-plus"></i></a></div>
+                            <div class="form-group">
+                                <div class="col-md-12">
+                                    <div class="checkbox checkbox-primary pull-left p-t-0">
+                                        <asp:CheckBox ID="chkSignUp" runat="server" />
+                                        <label for="checkbox-signup">Remember me </label>
+                                    </div>
+                                    <a href="#" id="to-recover" class="text-dark pull-right"><i class="fa fa-lock m-r-5"></i>Forgot pwd?</a>
+                                </div>
                             </div>
-                        </div>
-                        <div class="form-group m-b-0">
-                            <div class="col-sm-12 text-center">
-                                <p>Don't have an account? <a href="pages-register2.html" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+                            <div class="form-group text-center m-t-20">
+                                <div class="col-xs-12">
+                                    <asp:Button ID="btnLogin" CssClass="btn btn-info btn-lg btn-block text-uppercase waves-light" runat="server" Text="Log In" OnClick="btnLogin_Click" />
+                                </div>
                             </div>
-                        </div>
+
+                            <div class="form-group m-b-0">
+                                <div class="col-sm-12 text-center">
+                                    <p>Don't have an account? <a href="SignUp.aspx" class="text-primary m-l-5"><b>Sign Up</b></a></p>
+                                </div>
+                            </div>
                     </div>
                 </div>
             </div>

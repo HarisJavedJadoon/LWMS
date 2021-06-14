@@ -22,29 +22,30 @@ namespace LWMS
         {
             try
             {
-                List<User> objUsers
-                       = UserDAL.UsersSelectDynamic("IsDeleted = 'False' AND Email = '" + txtEmail.Text.Trim() + "'", "");
+                List<Vendor> objVendors
+                       = VendorDAL.VendorsSelectDynamic("IsDeleted = 'False' AND Email = '" + txtEmail.Text.Trim() + "'", "");
 
-                if (objUsers != null)
+                if (objVendors != null)
                 {
                     divMessages.InnerHtml = CommonMethods.ShowNotification("Email already registered, Please contact system administrator for further information", MessageOption.Error);
                     return;
                 }
 
-                User objUser = new User();
-                objUser.Name = txtName.Text.Trim();
-                objUser.Email = txtEmail.Text.Trim();
-                objUser.Password = txtPassword.Text.Trim();
-                objUser.Group.ID = 2;
-                objUser.Status = "A";
-                objUser.KeepTrack.CreatedBy = "Online User";
-                objUser.ID = UserDAL.ModifyUser(objUser, DataOperation.Insert);
+                Vendor objVendor = new Vendor();
+                objVendor.Name = txtName.Text.Trim();
+                objVendor.Email = txtEmail.Text.Trim();
+                objVendor.MobileNo = txtMobileNo.Text.Trim();
+                objVendor.Password = txtPassword.Text.Trim();
+                objVendor.Group.ID = 2;
+                objVendor.Status = "A";
+                objVendor.KeepTrack.CreatedBy = "Online Vendor";
+                objVendor.ID = VendorDAL.ModifyVendor(objVendor, DataOperation.Insert);
                 divMessages.InnerHtml = CommonMethods.ShowNotification("Register Successfully,Please Login", MessageOption.Success);
 
                 txtName.Text = string.Empty;
                 txtEmail.Text = string.Empty;
                 txtPassword.Text = string.Empty;
-                txtConfirmPassword.Text = string.Empty;
+                txtMobileNo.Text = string.Empty;
             }
             catch (Exception ex)
             {

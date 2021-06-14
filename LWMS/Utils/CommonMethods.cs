@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
+using System.Web.UI.WebControls;
 
 namespace LWMS.Utils
 {
@@ -42,5 +43,20 @@ namespace LWMS.Utils
                     return "";
             }
         }
+
+
+        public static void BindVendors(DropDownList ddlVendor, string initialString = "")
+        {
+            ddlVendor.DataSource = VendorDAL.VendorsSelectDynamic("IsDeleted = 'False' AND Status = 'A'  ", "Name");
+            ddlVendor.DataTextField = "Name";
+            ddlVendor.DataValueField = "ID";
+            ddlVendor.DataBind();
+            if (!string.IsNullOrEmpty(initialString))
+                ddlVendor.Items.Insert(0, new ListItem(initialString, "0"));
+            else
+                ddlVendor.Items.Insert(0, new ListItem("Please Select", "0"));
+        }
+        
+
     }
 }

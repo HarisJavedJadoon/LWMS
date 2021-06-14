@@ -27,32 +27,32 @@ namespace LWMS
         }
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            List<User> users
-                  = UserDAL.UsersSelectDynamic("Email ='" + txtEmail.Text + "' AND IsDeleted = 'False'", "ID");
-            if (users != null && users.Count > 0)
+            List<Vendor> Vendors
+                  = VendorDAL.VendorsSelectDynamic("Email ='" + txtEmail.Text + "' AND IsDeleted = 'False'", "ID");
+            if (Vendors != null && Vendors.Count > 0)
             {
-                if (users.FirstOrDefault().Status.Trim() == "I")
+                if (Vendors.FirstOrDefault().Status.Trim() == "I")
                 {
-                    divMessages.InnerHtml = CommonMethods.ShowNotification("User is Inactive", MessageOption.Error);
+                    divMessages.InnerHtml = CommonMethods.ShowNotification("Vendor is Inactive", MessageOption.Error);
                     return;
                 }
-                if (users.FirstOrDefault().Password == txtPassword.Text.Trim())
+                if (Vendors.FirstOrDefault().Password == txtPassword.Text.Trim())
                 {
-                    ApplicationConfig.CurrentUser = users.FirstOrDefault();
-                    ApplicationConfig.CurrentUser.Group
-                        = GroupDAL.GroupSelect(ApplicationConfig.CurrentUser.Group);
+                    ApplicationConfig.CurrentVendor = Vendors.FirstOrDefault();
+                    ApplicationConfig.CurrentVendor.Group
+                        = GroupDAL.GroupSelect(ApplicationConfig.CurrentVendor.Group);
 
-                    LoginUser();
+                    LoginVendor();
                     
                 }
                 else
                 {
-                    divMessages.InnerHtml = CommonMethods.ShowNotification("Username or Password is Incorrect.", MessageOption.Error);
+                    divMessages.InnerHtml = CommonMethods.ShowNotification("Email or Password is Incorrect.", MessageOption.Error);
                 }
             }
             else
             {
-                divMessages.InnerHtml = CommonMethods.ShowNotification("Username or Password is Incorrect.", MessageOption.Error);
+                divMessages.InnerHtml = CommonMethods.ShowNotification("Email or Password is Incorrect.", MessageOption.Error);
             }
             txtEmail.Text = string.Empty;
             txtPassword.Text = string.Empty;
@@ -63,11 +63,11 @@ namespace LWMS
 
         #region Utility Methods
 
-        private void LoginUser()
+        private void LoginVendor()
         {
-            if (ApplicationConfig.CurrentUser != null)
+            if (ApplicationConfig.CurrentVendor != null)
             {
-                redirectToDashboard(ApplicationConfig.CurrentUser);
+                redirectToDashboard(ApplicationConfig.CurrentVendor);
             }
             else
             {
@@ -76,9 +76,9 @@ namespace LWMS
             }
 
         }
-        private void redirectToDashboard(User objUser)
+        private void redirectToDashboard(Vendor objVendor)
         {
-            if (objUser.Group.ID == 2)
+            if (objVendor.Group.ID == 2)
             {
                 Response.Redirect("~/Secure/Vendor/WebPages/Default.aspx");
             }
